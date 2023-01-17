@@ -39,9 +39,15 @@ class Vulnerability(models.Model):
             ),
         )
 
+    def __str__(self):
+        return self.title
+
 
 class AuditLog(models.Model):
     vulnerability = models.ForeignKey(Vulnerability, on_delete=models.PROTECT)
     updated_at = models.DateTimeField(auto_now=True)
     created_at = models.DateTimeField()
     updated_by = models.ForeignKey(User, on_delete=models.PROTECT)
+
+    def __str__(self):
+        return self.vulnerability
